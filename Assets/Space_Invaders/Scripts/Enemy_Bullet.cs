@@ -11,6 +11,7 @@ public class Enemy_Bullet : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Destroys the gameObject 5 seconds later of his spawn
         Destroy(gameObject, despawnTime);
     }
 
@@ -22,9 +23,15 @@ public class Enemy_Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // If collides with building, destroys itself and reduces building life
         if (collision != null && collision.tag == buildingTag)
         {
             collision.GetComponent<Building_Script>().currentLife--;
+            Destroy(gameObject);
+        }
+
+        if (collision != null && collision.tag == playerTag)
+        {
             Destroy(gameObject);
         }
     }

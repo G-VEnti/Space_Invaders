@@ -9,7 +9,7 @@ public class Enemy_Movement : MonoBehaviour
     public Vector3 enemyV = new Vector3(1, 0, 0);
     public float enemySpeed;
     public bool directionChanged = false;
-    public List<Change_Enemy_Direction> enemyScripts;
+    public List<Enemy_Script> enemyScripts;
     private int randomNum;
     private float spawnEnemyBullet;
     public GameObject enemyBullet;
@@ -18,6 +18,7 @@ public class Enemy_Movement : MonoBehaviour
     void Start()
     {
         instance = this;
+        // Set timer to spawn the first bullet
         spawnEnemyBullet = Time.time + 1;
     }
 
@@ -27,6 +28,7 @@ public class Enemy_Movement : MonoBehaviour
         
         transform.position += enemyV * enemySpeed * Time.deltaTime;
 
+        // Choose a random enemy from the list, uses its transform to instantiate a bullet and adds 1s to the timer
         if (Time.time >= spawnEnemyBullet)
         {
             randomNum = Random.Range(0, enemyScripts.Count);

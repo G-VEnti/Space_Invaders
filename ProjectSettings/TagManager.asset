@@ -8,6 +8,8 @@ TagManager:
   - Building
   - LeftLimit
   - RightLimit
+  - EnemyBullet
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

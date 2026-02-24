@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7339985142132659224}
   m_Layer: 0
   m_Name: PlayerBullet
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 15
-  enemyTag: Enemy
+  enemySpeedIncreasement: 0.1
 --- !u!50 &-7339985142132659224
 Rigidbody2D:
   serializedVersion: 5
