@@ -36,6 +36,7 @@ public class Enemy_Script : MonoBehaviour
         {
             UI_Manager.instance.score += scoreToGive;
             Enemy_Movement.instance.enemySpeed += enemySpeedIncreasement;
+            Enemy_Movement.instance.enemyScripts.Remove(this);
             Destroy(collision.gameObject);
             Destroy(gameObject);
             Destroy(this);
