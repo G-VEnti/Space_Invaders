@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 9156831680899891012}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   horizontalLimit: 8
   playerBullet: {fileID: 8392361055938648183, guid: 8aa1b655745ca1e4daa6a94d083079ff, type: 3}
   shootingPos: {fileID: 3066141231595905493}
+  enemyManager: {fileID: 7014236965020340614, guid: 96c8c5e638cc74d4fafad04d07c474cd, type: 3}
 --- !u!61 &9156831680899891012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.625, y: 1}
+    oldSize: {x: 2, y: 1}
     newSize: {x: 1.625, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

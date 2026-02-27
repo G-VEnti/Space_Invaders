@@ -22,7 +22,7 @@ public class Enemy_Script : MonoBehaviour
     {
         if (Time.time > timeLimit)
         {
-            Enemy_Movement.instance.directionChanged = false;
+            Enemy_Manager.instance.directionChanged = false;
         }
     }
 
@@ -38,8 +38,8 @@ public class Enemy_Script : MonoBehaviour
         if (collision != null && collision.tag == playerBulletTag)
         {
             UI_Manager.instance.score += scoreToGive;
-            Enemy_Movement.instance.enemySpeed += enemySpeedIncreasement;
-            Enemy_Movement.instance.enemyScripts.Remove(this);
+            Enemy_Manager.instance.enemySpeed += enemySpeedIncreasement;
+            Enemy_Manager.instance.enemyScripts.Remove(this);
             Destroy(collision.gameObject);
             Destroy(GetComponent<BoxCollider2D>());
             GetComponent<Animator>().SetBool(deadAnim, true);
@@ -60,11 +60,11 @@ public class Enemy_Script : MonoBehaviour
     /// </summary>
     private void ChangeDirection()
     {
-        if (Enemy_Movement.instance.directionChanged == false)
+        if (Enemy_Manager.instance.directionChanged == false)
         {
-            Enemy_Movement.instance.directionChanged = true;
-            Enemy_Movement.instance.enemyV *= -1;
-            Enemy_Movement.instance.transform.position = new Vector3(Enemy_Movement.instance.transform.position.x, Enemy_Movement.instance.transform.position.y - downDistance, transform.position.z);
+            Enemy_Manager.instance.directionChanged = true;
+            Enemy_Manager.instance.enemyV *= -1;
+            Enemy_Manager.instance.transform.position = new Vector3(Enemy_Manager.instance.transform.position.x, Enemy_Manager.instance.transform.position.y - downDistance, transform.position.z);
             timeLimit = Time.time + waitingTime;
         }
     }

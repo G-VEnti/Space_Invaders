@@ -12,12 +12,15 @@ public class Player_Script : MonoBehaviour
     public GameObject shootingPos;
     private Vector3 startPos = new Vector3 (0, -4.5f, 0);
     private string enemyBulletTag = "EnemyBullet";
-    private float respawnTime = 5f;
+
+    private InputSystem_Actions actions;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         transform.position = startPos;
+        actions = new InputSystem_Actions();
+        actions.Player.Enable();
     }
 
     // Update is called once per frame
@@ -25,19 +28,27 @@ public class Player_Script : MonoBehaviour
     {
         // Player movement
         movementV = new Vector3(0, 0, 0);
+        Vector2 movement = actions.Player.Move.ReadValue<Vector2>();
 
         // Inputs for horizontal movement
         if (Keyboard.current.aKey.isPressed)
         {
             movementV.x = -1;
         }
+
+        //if (movement.x < 0)
+        //{
+        //    movementV.x = -1;
+        //    Debug.Log(movement);
+        //}
+
         if (Keyboard.current.dKey.isPressed)
         {
             movementV.x = 1;
         }
 
         // Player attack
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && UI_Manager.instance.panelActive == false)
         {
             Shoot();
         }
@@ -58,12 +69,6 @@ public class Player_Script : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (Enemy_Movement.instance.enemyScripts.Count == 0)
-        {
-            StartCoroutine(EnemyRespawn());
-        }
-
     }
 
     /// <summary>
@@ -82,13 +87,5 @@ public class Player_Script : MonoBehaviour
             UI_Manager.instance.playerLives--;
             Destroy(gameObject);
         }
-    }
-
-    IEnumerator EnemyRespawn()
-    {
-        yield return new WaitForSeconds(respawnTime);
-
-        transform.position = startPos;
-        Instantiate(Enemy_Movement.instance.gameObject);
     }
 }

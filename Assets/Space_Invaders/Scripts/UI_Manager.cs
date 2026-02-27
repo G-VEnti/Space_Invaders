@@ -16,7 +16,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject mainMenuPanel;
     public GameObject pausePanel;
-    private bool panelActive;
+    public bool panelActive;
     private bool inGame;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
