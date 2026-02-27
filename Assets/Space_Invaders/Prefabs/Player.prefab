@@ -137,7 +137,6 @@ MonoBehaviour:
   horizontalLimit: 8
   playerBullet: {fileID: 8392361055938648183, guid: 8aa1b655745ca1e4daa6a94d083079ff, type: 3}
   shootingPos: {fileID: 3066141231595905493}
-  enemyManager: {fileID: 7014236965020340614, guid: 96c8c5e638cc74d4fafad04d07c474cd, type: 3}
 --- !u!61 &9156831680899891012
 BoxCollider2D:
   m_ObjectHideFlags: 0

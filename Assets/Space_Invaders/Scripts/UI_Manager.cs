@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -75,7 +74,6 @@ public class UI_Manager : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        inGame = true;
     }
 
     /// <summary>
@@ -103,5 +101,10 @@ public class UI_Manager : MonoBehaviour
     {
         panelActive = false;
         pausePanel.SetActive(panelActive);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
