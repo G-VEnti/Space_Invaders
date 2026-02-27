@@ -18,7 +18,6 @@ public class UI_Manager : MonoBehaviour
     public GameObject pausePanel;
     private bool panelActive;
     private bool inGame;
-    public bool gameOver = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,7 +55,7 @@ public class UI_Manager : MonoBehaviour
         }
 
         // If player don't have lives game over panel shows
-        if (playerLives <= 0 || gameOver == true)
+        if (playerLives <= 0)
         {
             panelActive = true;
             gameOverPanel.SetActive(panelActive);

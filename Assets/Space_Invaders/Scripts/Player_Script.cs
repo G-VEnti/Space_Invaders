@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,11 +7,12 @@ public class Player_Script : MonoBehaviour
 {
     private Vector3 movementV;
     public float movementSpeed;
-    public float horizontalLimit = 8f;
+    public float horizontalLimit = 7.2f;
     public GameObject playerBullet;
     public GameObject shootingPos;
     private Vector3 startPos = new Vector3 (0, -4.5f, 0);
     private string enemyBulletTag = "EnemyBullet";
+    private float respawnTime = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,6 +58,12 @@ public class Player_Script : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (Enemy_Movement.instance.enemyScripts.Count == 0)
+        {
+            StartCoroutine(EnemyRespawn());
+        }
+
     }
 
     /// <summary>
@@ -74,5 +82,13 @@ public class Player_Script : MonoBehaviour
             UI_Manager.instance.playerLives--;
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator EnemyRespawn()
+    {
+        yield return new WaitForSeconds(respawnTime);
+
+        transform.position = startPos;
+        Instantiate(Enemy_Movement.instance.gameObject);
     }
 }

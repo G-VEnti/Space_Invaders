@@ -8,11 +8,14 @@ public class Enemy_Script : MonoBehaviour
     public string playerBulletTag = "PlayerBullet";
     public string playerTag = "Player";
     public string buildingTag = "Building";
+    public string deadAnim = "isDead";
     public float downDistance = 0.5f;
     private float timeLimit;
     public float waitingTime;
     public float enemySpeedIncreasement = 0.1f;
     public int scoreToGive;
+    public float despawnTime = 0.3f;
+    
 
     // Update is called once per frame
     void Update()
@@ -31,21 +34,23 @@ public class Enemy_Script : MonoBehaviour
             ChangeDirection();
         }
 
-        // If bullet collides destroys gameObject, script, player bullet, adds score and increases enemy movement speed
+        // If player bullet collides destroys gameObject, script, player bullet, adds score, increases enemy movement speed and changes sprite
         if (collision != null && collision.tag == playerBulletTag)
         {
             UI_Manager.instance.score += scoreToGive;
             Enemy_Movement.instance.enemySpeed += enemySpeedIncreasement;
             Enemy_Movement.instance.enemyScripts.Remove(this);
             Destroy(collision.gameObject);
-            Destroy(gameObject);
+            Destroy(GetComponent<BoxCollider2D>());
+            GetComponent<Animator>().SetBool(deadAnim, true);
+            Destroy(gameObject, despawnTime);
             Destroy(this);
         }
-        
-        // If enemy collides with building or player game finishes
+
+        // If enemy collides with building or player, game finishes
         if (collision != null && (collision.tag == buildingTag || collision.tag == playerTag))
         {
-            UI_Manager.instance.gameOver = true;
+            UI_Manager.instance.playerLives = 0;
         }
     }
 

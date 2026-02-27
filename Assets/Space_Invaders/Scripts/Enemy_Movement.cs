@@ -36,4 +36,6 @@ public class Enemy_Movement : MonoBehaviour
             spawnEnemyBullet = Time.time + 1;
         }
     }
+
+    
 }
